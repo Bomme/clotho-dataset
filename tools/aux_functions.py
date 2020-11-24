@@ -103,8 +103,7 @@ def check_data_for_split(dir_audio: Path, dir_data: Path, dir_root: Path,
                         'object {f_np}.'.format(f_audio=file_name_audio, f_np=data_file))
 
                 # Check all elements, one to one
-                if not all([data_audio_original[i] == data_audio_rec_array[i]
-                            for i in range(len(data_audio_original))]):
+                if not np.array_equal(data_audio_original, data_audio_rec_array):
                     raise ValueError('Numpy object {} has wrong audio data.'.format(data_file))
 
                 # Get the original caption
